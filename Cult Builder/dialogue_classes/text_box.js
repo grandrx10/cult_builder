@@ -16,13 +16,14 @@ class Text_Box{
         this.show_character_box()
     }
 
-    set_text(text){
+    set_text(text, cult_stats){
         var skip_line = false
+        var insert_variable = true
         this.text = ""
 
         for (var i = 0; i < text.length; i++){
             this.text += text[i]
-
+            
             if (i % 60 == 0 && i != 0){
                 skip_line = true
             }
@@ -31,7 +32,19 @@ class Text_Box{
                 this.text += "\n"
                 skip_line = false
             }
-        }       
+        }
+        
+        while (insert_variable){
+            insert_variable = false
+
+            if (this.text.includes("[")){
+                insert_variable = true
+
+                var variable = this.text.slice(this.text.indexOf("[") + 1, this.text.indexOf("]"))
+                this.text = this.text.slice(0, this.text.indexOf("[")) + cult_stats.stats[variable] + 
+                this.text.slice(this.text.indexOf("]") + 1, this.text.length)
+            }
+        }
     }
 
     set_character_speaking(character_name, text_color, border_color){

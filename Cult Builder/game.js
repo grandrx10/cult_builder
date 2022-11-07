@@ -1,5 +1,3 @@
-let test
-
 function setup(){
     createCanvas(windowWidth, windowHeight);
     background(30,30,30)
@@ -11,7 +9,7 @@ function setup(){
     imageMode(CENTER)
     
     event_handler = new Event_Handler();
-}   
+}
 
 // refit the screen when resized
 function windowResized() {

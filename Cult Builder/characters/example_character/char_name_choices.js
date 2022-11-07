@@ -15,14 +15,14 @@ class Char_Name_Choices extends Character_Choices{ // <- Change Char_Name to you
         switch(choice){
             case "example_choice":
                 hash = {
-                    "Eggs" : ["last_example_dialogue_path"],
-                    "Ham" : ["last_example_dialogue_path"]
+                    "Eggs" : "last_example_dialogue_path",
+                    "Ham" : "last_example_dialogue_path"
                 }
                 break;
             case "example_choice_2":
                 hash = {
-                    "choice_1" : ["example_dialogue_path1"],
-                    "choice_2" : ["example_dialogue_path2"]
+                    "choice_1" : "example_dialogue_path1",
+                    "choice_2" : "example_dialogue_path2"
                 }
                 break;
         }

@@ -5,7 +5,12 @@ class Image_Manager{
     }
 
     add_image(image_name, image, image_location){
-        this.images[image_name] = new Image_Display(image, image_location)
+        this.images[image_name] = new Image_Display(image, image_location, image_name)
+    }
+
+    change_location(previous_location, new_location){
+        this.images[new_location] = this.images[previous_location];
+        delete this.images[previous_location]
     }
 
     show(){
@@ -15,15 +20,8 @@ class Image_Manager{
     }
 
     update(){
-
-        if (this.fade_out == true){
-            var fade_level = -5
-        } else {
-            var fade_level = 5
-        }
-
         for (var image in this.images){
-            this.images[image].update(fade_level)
+            this.images[image].update()
 
             if (this.images[image].fade < 0){
                 delete this.images[image]
@@ -36,6 +34,10 @@ class Image_Manager{
     }
 
     fade_images(){
+        for (var image in this.images){
+            this.images[image].fade_level = -5
+        }
+
         this.fade_out = true
     }
 }

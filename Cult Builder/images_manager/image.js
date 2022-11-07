@@ -1,11 +1,13 @@
 class Image_Display {
-    constructor (image, image_location){
+    constructor (image, image_location, image_name){
         this.x;
         this.y;
         this.image = image
+        this.image_name = image_name
         this.fade = 0
+        this.fade_level = 5
 
-        this.set_location(image_location)
+        this.set_location(image_location, null, null)
     }
 
     show(){
@@ -13,22 +15,28 @@ class Image_Display {
         image(this.image, this.x, this.y)
     }
 
-    update(fade_level){
-        if (this.fade < 255 && fade_level > 0){
-            this.fade += fade_level
-        } else if (this.fade >= 0 && fade_level < 0){
-            this.fade += fade_level
+    update(){
+        if (this.fade < 255 && this.fade_level > 0){
+            this.fade += this.fade_level
+        } else if (this.fade >= 0 && this.fade_level < 0){
+            this.fade += this.fade_level
         }
     }
 
-    set_location(image_location){
-        this.x = windowWidth/2;
-        this.y = windowHeight/2;
+    set_location(image_location, images, image_manager){
+        this.y = windowHeight/2
 
         if (image_location == "left"){
             this.x = windowWidth/3
         } else if (image_location == "right"){
             this.x = windowWidth*2/3
+        } else if (image_location == "fade_out"){
+            this.fade_level = -5
+        } else if (image_location == "middle") {
+            this.x = windowWidth/2;
+        } else {
+            image_manager.change_location(this.image_name, image_location)
+            this.image = images[image_location]
         }
     }
 }

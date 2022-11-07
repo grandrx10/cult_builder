@@ -10,9 +10,9 @@ class Transition extends Character{
     }
 
     set_possible_dialogue(){
-        this.dialogue_path = "in_transition"
+        this.dialogue_path = new Dialogue("in_transition")
         this.possible_dialogue = {
-            "in_transition" : [["(Spacebar to see the next client)"], ["(Next_Char)in_transition"]]
+            "in_transition" : ["{Speaker:}(Spacebar to see the next client)", "(Next_Char)in_transition"]
         }
     }
 
